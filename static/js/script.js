@@ -138,10 +138,12 @@ function createModal(type, boxId = null) {
 
 function sendEmailNotification() {
     const emailInput = document.getElementById('emailInput');
+    document.getElementById('sendEmailBtn').disabled = true;
     const email = emailInput.value.trim();
     
     if (!email) {
         alert('Vui lòng nhập địa chỉ email!');
+        document.getElementById('sendEmailBtn').disabled = false;
         return;
     }
     
@@ -149,6 +151,7 @@ function sendEmailNotification() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         alert('Vui lòng nhập địa chỉ email hợp lệ!');
+        document.getElementById('sendEmailBtn').disabled = false;
         return;
     }
     
@@ -174,11 +177,13 @@ function sendEmailNotification() {
             document.getElementById('sendEmailBtn').disabled = true
         } else {
             alert('Có lỗi xảy ra khi gửi email: ' + data.message);
+            document.getElementById('sendEmailBtn').disabled = false;
         }
     })
     .catch(error => {
         console.error('Error:', error);
         alert('Có lỗi xảy ra khi gửi email.');
+        document.getElementById('sendEmailBtn').disabled = false;
     });
 }
 
