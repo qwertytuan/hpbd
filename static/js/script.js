@@ -139,6 +139,8 @@ function createModal(type, boxId = null) {
 function sendEmailNotification() {
     const emailInput = document.getElementById('emailInput');
     document.getElementById('sendEmailBtn').disabled = true;
+    document.getElementById('sendEmailBtn').opacity = 0.7;
+    document.getElementById('sendEmailBtn').style.cursor = 'not-allowed';
     const email = emailInput.value.trim();
     
     if (!email) {
@@ -175,9 +177,11 @@ function sendEmailNotification() {
             document.getElementById('regular2CloseBtn').style.opacity = 1;
             document.getElementById('regular2CloseBtn').style.cursor = 'pointer';
             document.getElementById('sendEmailBtn').disabled = true
+            document.getElementById('sendEmailBtn').style.display = 'none'; // Hide the send button after sending
         } else {
             alert('Có lỗi xảy ra khi gửi email: ' + data.message);
             document.getElementById('sendEmailBtn').disabled = false;
+
         }
     })
     .catch(error => {
