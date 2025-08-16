@@ -45,8 +45,8 @@ def send_mail(to, subject):
     msg['To'] = to
     msg['Subject'] = subject
     # NHAY SO SERIAL VA SO THE CAO
-    cardNumber = "1234-5678-9012-3456"
-    cardSerial = "1234567890123456"
+    cardNumber = "6143 1562 0724 15"
+    cardSerial = "5920004539505"
     # 
     body = f"""
 <html>
@@ -88,4 +88,4 @@ def send_mail(to, subject):
         return False
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000,debug=True)

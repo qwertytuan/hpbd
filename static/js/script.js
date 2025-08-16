@@ -67,7 +67,7 @@ function createModal(type, boxId = null) {
                         <p style="font-style: italic; color: #3914dfff; font-size: 1.1em;">
                             "Món quà sẽ sớm được gửi đến bạn!" 💖
                         </p>
-                        <img src="/static/images/how-yus-s2-feels-like-v0-kmss0znhzkdf1.webp" width="400px" height="200px">
+                        <img src="/static/images/pngkey.com-mystery-box-png-2156192.png" width="200px" height="200px">
                     </div>
                 </div>
                 <button class="close-btn special-btn" onclick="closeModal()">Ố dề!</button>
@@ -103,7 +103,7 @@ function createModal(type, boxId = null) {
                 <h2 class="modal-title">🎉 XIN CHÚC MỪNG! 🎉</h2>
                 <img class="modal-cake" src="/static/images/cake.svg" alt="Cake">
                 <p class="modal-message">Bạn đã mở được phần quà</p>
-                <p class="modal-message">Một thẻ điện thoại mệnh giá 5 tỏi!</p>
+                <p class="modal-message">Một thẻ điện thoại mệnh giá 2 tỏi!</p>
                 <div style="margin-top: 20px;">
                     <input type="email" id="emailInput" placeholder="Nhập email để nhận quà" style="padding: 10px; border-radius: 5px; border: 1px solid #ddd; margin-right: 10px; width: 250px;">
                     <button onclick="sendEmailNotification()" id="sendEmailBtn" style="padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Gửi</button>
@@ -141,6 +141,7 @@ function sendEmailNotification() {
     document.getElementById('sendEmailBtn').disabled = true;
     document.getElementById('sendEmailBtn').opacity = 0.7;
     document.getElementById('sendEmailBtn').style.cursor = 'not-allowed';
+    document.getElementById('sendEmailBtn').style.color = '#8CBA80';
     const email = emailInput.value.trim();
     
     if (!email) {
@@ -152,11 +153,11 @@ function sendEmailNotification() {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+        document.getElementById('sendEmailBtn').disabled = true;
         alert('Vui lòng nhập địa chỉ email hợp lệ!');
         document.getElementById('sendEmailBtn').disabled = false;
         return;
     }
-    
     // Send email via Flask backend
     fetch('/send-email', {
         method: 'POST',
@@ -176,7 +177,8 @@ function sendEmailNotification() {
             document.getElementById('regular2CloseBtn').disabled = false;
             document.getElementById('regular2CloseBtn').style.opacity = 1;
             document.getElementById('regular2CloseBtn').style.cursor = 'pointer';
-            document.getElementById('sendEmailBtn').disabled = true
+            document.getElementById('sendEmailBtn').disabled = true;
+            document.getElementById('emailInput').style.display = 'none';
             document.getElementById('sendEmailBtn').style.display = 'none'; // Hide the send button after sending
         } else {
             alert('Có lỗi xảy ra khi gửi email: ' + data.message);
@@ -345,3 +347,4 @@ function CreateBoxes() {
         document.getElementById('box-list').appendChild(boxItem);
     }
 }
+
